@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Team Deathmatch Menu</title>
+</head>
+<body>
+    <div id="menu" style="display: none;">
+        <button class="close-btn" onclick="closeMenu()">X</button>
+        <div class="menu-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 id="lobbyTitle">Create a gun-practice game</h2>
+        </div>
+    
+        <div class="menu-container">
+            <div class="settings-game-container">
+                <div class="settings-column">
+                    <h3>Map Settings</h3>
+                    <label for="mapSelect">Select a Map:</label>
+                    <select id="mapSelect" onchange="updateAllSettings()"></select>
+        
+                    <label for="weaponSelect">Select a Weapon:</label>
+                    <select id="weaponSelect" onchange="updateAllSettings()"></select>
+                </div>
+        
+                <div class="game-settings">
+                    <h3>Game Settings</h3>
+                
+                    <label for="maxHealth">Max Health:</label>
+                    <input type="number" id="maxHealth" class="settings-input" value="100" onchange="updateAllSettings()">
+                
+                    <label for="maxArmor">Max Armor:</label>
+                    <input type="number" id="maxArmor" class="settings-input" value="100" onchange="updateAllSettings()">
+                
+                    <label for="healthRegen">Health Regen:</label>
+                    <select id="healthRegen" class="settings-dropdown" onchange="updateAllSettings()">
+                        <option value="true">Enabled</option>
+                        <option value="false">Disabled</option>
+                    </select>
+                
+                    <label for="gameModeSelect">Select Gamemode:</label>
+                    <select id="gameModeSelect" class="gamemode-dropdown" onchange="updateAllSettings()">
+                        <option value="TDM">Team Death Match</option>
+                        <option value="Infiltrate">Infiltrate</option>
+                        <option value="HopOuts">Hop Outs</option>
+                    </select>
+                
+                    <div id="scoreLimitContainer" style="display: none;">
+                        <label for="scoreLimit">Score Limit:</label>
+                        <input type="number" id="scoreLimit" class="settings-input" value="10" onchange="updateAllSettings()">
+                    </div>
+                
+                    <div id="carModelInput" style="display: none;">
+                        <label for="carModel">Car Model:</label>
+                        <input type="text" id="carModel" class="settings-input" placeholder="Enter car model" onchange="updateAllSettings()">
+                    </div>
+                
+                    <div id="infiltrateSettings" style="display: none;">
+                        <label for="defendingTeam">Select Defending Team:</label>
+                        <select id="defendingTeam" class="settings-dropdown" onchange="updateAllSettings()">
+                            <option value="Red">Red</option>
+                            <option value="Blue">Blue</option>
+                        </select>
+                    </div>
+                
+                    <label for="gameTimer">Game Timer (seconds):</label>
+                    <input type="number" id="gameTimer" class="settings-input" value="50" onchange="updateAllSettings()">
+                
+                </div>
+            </div>
+        </div>
+        
+        <div class="teams-container">
+            <div class="team-section">
+                <h3>Red Team</h3>
+                <div class="team-members" id="redTeam"></div>  
+                <button class="map-btn red-btn" onclick="joinTeam('Red')">Join Red Team</button>
+            </div>
+        
+            <div class="team-section">
+                <h3>Blue Team</h3>
+                <div class="team-members" id="blueTeam"></div>
+                <button class="map-btn blue-btn" onclick="joinTeam('Blue')">Join Blue Team</button>
+            </div>
+        </div>
+
+        <div class="start-game-container">
+            <button class="map-btn" onclick="startGame()">Start Game</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

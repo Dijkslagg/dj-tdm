@@ -1,0 +1,290 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: transparent; 
+    color: #F5F5F5;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#menu {
+    position: relative; 
+    background-color: rgba(20, 20, 20, 0.9);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.settings-game-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.settings-column,
+.game-settings {
+    width: 48%;
+}
+
+h2, h3 {
+    color: #50C878;
+    text-align: center;
+}
+
+.teams-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.team-section {
+    background-color: rgba(40, 40, 40, 0.9);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    width: 48%;
+}
+
+.team-section h3 {
+    color: #F5F5F5;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.team-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+    list-style-type: none; 
+    padding: 0;
+}
+
+.team-btn button.red-btn {
+    background-color: #FF5C6A;
+    border: none;
+}
+
+.team-btn button.red-btn:hover {
+    background-color: #E94560;
+    box-shadow: 0 0 10px rgba(255, 92, 106, 0.7);
+}
+
+.team-btn button.blue-btn {
+    background-color: #007BFF;
+    border: none;
+}
+
+.team-btn button.blue-btn:hover {
+    background-color: #339FFF;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+}
+
+.team-member {
+    background-color: rgba(60, 60, 60, 1); 
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.team-member.red {
+    border: 2px solid #FF5C6A;
+}
+
+.team-member.blue {
+    border: 2px solid #007BFF;
+}
+
+.team-member.empty {
+    color: #ccc;
+    font-style: italic;
+}
+
+.team-member:hover {
+    background-color: rgba(80, 80, 80, 1); 
+    transform: scale(1.05);
+}
+
+.team-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.team-btn button {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Start Game Button */
+.start-game-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.start-game-container .map-btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.start-game-container .map-btn:hover {
+    background-color: #66BB6A;
+    box-shadow: 0px 0px 12px rgba(76, 175, 80, 0.7);
+}
+
+.close-btn {
+    background-color: #E94560;
+    color: #F5F5F5;
+    border: none;
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 16px;
+    border-radius: 5px;
+    position: absolute;  
+    top: 15px;
+    right: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: #FF6F91;
+}
+
+input, select {
+    width: 100%;
+    margin: 5px 10px; 
+    padding: 5px; 
+    box-sizing: border-box; 
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.column {
+    flex: 1; 
+    margin: 10px;
+}
+
+.settings-input,
+.settings-dropdown,
+#mapSelect,
+#weaponSelect {
+    background-color: #2D2D2D;
+    color: #F5F5F5;
+    border: 1px solid #50C878;
+    border-radius: 5px;
+    padding: 12px;
+    width: 100%; 
+    font-size: 16px;
+    margin-bottom: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.settings-input:hover,
+.settings-dropdown:hover,
+#mapSelect:hover,
+#weaponSelect:hover {
+    background-color: #3A3A3A;
+}
+
+.settings-input:focus,
+.settings-dropdown:focus,
+#mapSelect:focus,
+#weaponSelect:focus {
+    border-color: #66BB6A;
+    outline: none;
+}
+
+.gamemode-dropdown {
+    background-color: #2D2D2D;
+    color: #F5F5F5;
+    border: 2px solid #339FFF;
+    border-radius: 5px;
+    padding: 12px;
+    width: 100%; 
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.gamemode-dropdown:hover {
+    background-color: #3A3A3A;
+}
+
+.gamemode-dropdown:focus {
+    border-color: #66BB6A;
+    outline: none;
+}
+
+.map-btn {
+    background-color: #4CAF50;
+    color: #F5F5F5;
+    border: none;
+    padding: 12px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.map-btn:hover {
+    background-color: #66BB6A;
+    box-shadow: 0px 0px 10px rgba(76, 175, 80, 0.6);
+}
+
+.game-settings, .settings-column {
+    margin-bottom: 20px;
+}
+
+.game-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
