@@ -22,31 +22,25 @@ end
 
 RegisterNetEvent('tdm:preparePlayer')
 AddEventHandler('tdm:preparePlayer', function(gameSettings, team, spawnLocation)
-    -- Close the menu
     SetNuiFocus(false, false)
     isMenuOpen = false
 
-    -- Give the player the appropriate health and armor
     local playerPed = PlayerPedId()
     SetEntityHealth(playerPed, tonumber(gameSettings.maxHealth) or 100)
 
-    -- Ensure armor is a number and capped at 100
     local armor = tonumber(gameSettings.maxArmor) or 50
-    armor = math.min(armor, 100) -- Ensures max armor doesn't exceed 100
+    armor = math.min(armor, 100)
     SetPedArmour(playerPed, armor)
 
-    -- Request server to give the player the selected weapon and ammo
     local selectedWeapon = gameSettings.selectedWeapon or 'weapon_pistol'
-    TriggerServerEvent("tdm:givePlayerItems", selectedWeapon, 250) -- Request server to give items
+    TriggerServerEvent("tdm:givePlayerItems", selectedWeapon, 250) -
 
-    -- Handle health regen setting if needed
     if gameSettings.healthRegen == "true" then
-        SetPlayerHealthRechargeMultiplier(PlayerId(), 1.0) -- Enable health regen
+        SetPlayerHealthRechargeMultiplier(PlayerId(), 1.0)
     else
-        SetPlayerHealthRechargeMultiplier(PlayerId(), 0.0) -- Disable health regen
+        SetPlayerHealthRechargeMultiplier(PlayerId(), 0.0)
     end
 
-    -- If the game mode is HopOuts, spawn a car and color it based on the team
     if gameSettings.gameMode == "HopOuts" and gameSettings.carModel then
         local carModel = GetHashKey(gameSettings.carModel)
         RequestModel(carModel)
@@ -57,7 +51,6 @@ AddEventHandler('tdm:preparePlayer', function(gameSettings, team, spawnLocation)
 
         local vehicle = CreateVehicle(carModel, spawnLocation.x, spawnLocation.y, spawnLocation.z, GetEntityHeading(playerPed), true, false)
         
-        -- Set car color based on the player's team
         if team == "Red" then
             SetVehicleCustomPrimaryColour(vehicle, 255, 0, 0)   -- Red
             SetVehicleCustomSecondaryColour(vehicle, 255, 0, 0) -- Red
@@ -70,7 +63,6 @@ AddEventHandler('tdm:preparePlayer', function(gameSettings, team, spawnLocation)
         TriggerEvent("vehiclekeys:client:SetOwner", QBCore.Functions.GetPlate(vehicle)) -- Give keys to the player
     end
 
-    -- Teleport player to the team's spawn location
     SetEntityCoords(playerPed, spawnLocation.x, spawnLocation.y, spawnLocation.z, false, false, false, true)
 end)
 
@@ -213,11 +205,9 @@ RegisterNetEvent('tdm:spawnPlayer')
 AddEventHandler('tdm:spawnPlayer', function(data)
     local playerPed = PlayerPedId()
     
-    -- Set player health and armor
     SetEntityHealth(playerPed, Config.MaxHealth)
     SetPedArmour(playerPed, Config.MaxArmor)
     
-    -- Spawn the vehicle if it's needed
     if data and data.spawn then
         SetEntityCoords(playerPed, data.spawn.x, data.spawn.y, data.spawn.z, false, false, false, true)
 
@@ -228,15 +218,13 @@ AddEventHandler('tdm:spawnPlayer', function(data)
                 Wait(1)
             end
             
-            local carColor = (data.team == "Red") and 28 or 111  -- Red = 28, Blue = 111
+            local carColor = (data.team == "Red") and 28 or 111 
             local vehicle = CreateVehicle(carHash, data.spawn.x, data.spawn.y, data.spawn.z, GetEntityHeading(playerPed), true, false)
             SetVehicleColours(vehicle, carColor, carColor)
             
-            -- Give player keys and put them in the vehicle
             TriggerEvent("vehiclekeys:client:SetOwner", QBCore.Functions.GetPlate(vehicle)) -- Give keys
             TaskWarpPedIntoVehicle(playerPed, vehicle, -1) -- Warp into the car
             
-            -- Clean up after model
             SetModelAsNoLongerNeeded(carHash)
         end
     end
